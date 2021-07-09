@@ -75,10 +75,38 @@ const menu = [
 
   const section = document.querySelector('.section-center');
 
+  const filterBtns = document.querySelectorAll('.filter-btn')
+
   window.addEventListener('DOMContentLoaded',function(){
     displayMenuItems(menu)
 
   });
+
+filterBtns.forEach(function(btn){
+  btn.addEventListener('click', function(e){
+    const category = e.currentTarget.dataset.id;
+    const menuCategory = menu.filter(function(menuItem){
+      if (menuItem.category === category) {
+        return menuItem;
+        
+      }
+    });
+    
+          if (category === 'all') {
+            displayMenuItems(menu);
+            
+          }else{
+            displayMenuItems(menuCategory);
+
+          }
+    console.log(menuCategory);
+
+  } )
+  
+})
+
+
+
 
   function displayMenuItems(menuItem){
     let displayMenu = menuItem.map(function(item){
